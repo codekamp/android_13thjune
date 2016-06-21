@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         songsListRecyclerView = (RecyclerView)findViewById(R.id.songs_list_recycler_view);
 
         songsListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        songsListRecyclerView.setAdapter(new SongRecyclerViewAdapter());
 
     }
 }

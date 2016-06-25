@@ -20,8 +20,40 @@ public class SquareRootFragment extends Fragment implements View.OnClickListener
     private EditText mNumberEditText;
     private Button mCalculateButton;
 
+    private int tableOf;
+    private int upTo;
+
     public SquareRootFragment() {
         // Required empty public constructor
+    }
+
+    public SquareRootFragment(int tableOf, int upTo) {
+        super();
+
+        this.tableOf = tableOf;
+        this.upTo = upTo;
+    }
+
+    public static SquareRootFragment newInstance(int tableOf, int upTo) {
+        SquareRootFragment fragment = new SquareRootFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("table_of", tableOf);
+        bundle.putInt("up_to", upTo);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle arguments = this.getArguments();
+
+        if (arguments != null) {
+            this.tableOf = arguments.getInt("table_of");
+            this.upTo = arguments.getInt("up_to");
+        }
     }
 
     @Nullable

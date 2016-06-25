@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
 
         if(manager.findFragmentByTag("square_root") == null) {
-            Fragment fragment = new SquareRootFragment();
+            Fragment fragment = SquareRootFragment.newInstance(10, 15);
 
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.add(R.id.container1, fragment, "square_root");
@@ -32,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportFragmentManager().getFragments() != null) {
             Log.d("CodeKamp", Integer.toString(manager.getFragments().size()));
         }
+
+
+
+
+
     }
 }

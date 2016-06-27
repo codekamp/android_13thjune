@@ -1,5 +1,6 @@
 package in.codekamp.kidsmaths;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         int tableOf = Integer.parseInt(mTableOfEditText.getText().toString());
         int upto = Integer.parseInt(mUptoEditText.getText().toString());
 
-        Log.d("CodeKamp", "we have to show table of " + tableOf + " upto " + upto);
+        Log.d("CodeKamp", "MainActivity. we have to show table of " + tableOf + " upto " + upto);
+
+        Intent intent = TableActivity.newIntent(this, tableOf, upto);
+        startActivity(intent);
     }
 }

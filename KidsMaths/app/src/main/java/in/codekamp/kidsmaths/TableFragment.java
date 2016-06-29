@@ -1,5 +1,7 @@
 package in.codekamp.kidsmaths;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -61,6 +63,26 @@ public class TableFragment extends Fragment implements TableRecyclerViewAdapter.
         recyclerView.setAdapter(new TableRecyclerViewAdapter(this.tableOf, this.upto, this));
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+
+        if (!(context instanceof Listner)) {
+            throw new RuntimeException("Hosting activity of table fragment should implement Lisnter interface");
+        }
+
+        this.listner = (Listner)context;
+
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+
     }
 
     @Override

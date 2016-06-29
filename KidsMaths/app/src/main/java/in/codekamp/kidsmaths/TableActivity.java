@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class TableActivity extends AppCompatActivity {
+public class TableActivity extends AppCompatActivity implements TableFragment.Listner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +41,10 @@ public class TableActivity extends AppCompatActivity {
         intent.putExtra("upto", upto);
 
         return intent;
+    }
+
+    @Override
+    public void itemTapped(int position) {
+
     }
 }

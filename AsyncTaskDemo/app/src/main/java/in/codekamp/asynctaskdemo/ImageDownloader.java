@@ -18,7 +18,7 @@ import java.net.URL;
 /**
  * Created by cerebro on 28/06/16.
  */
-public class ImageDownloader extends AsyncTask<String, Void, Drawable> {
+public class ImageDownloader extends AsyncTask<String, Integer, Drawable> {
 
     private CompletionListner listner;
 
@@ -39,6 +39,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Drawable> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
+            publishProgress(10);
 
             return Drawable.createFromStream(connection.getInputStream(),"drawable_name");
 
@@ -48,6 +49,13 @@ public class ImageDownloader extends AsyncTask<String, Void, Drawable> {
 
         return null;
 
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+
+        this.listner.progressReport(values[0]);
     }
 
     @Override
@@ -61,5 +69,6 @@ public class ImageDownloader extends AsyncTask<String, Void, Drawable> {
 
     public interface CompletionListner {
         public void doneDownloading(Drawable drawable);
+        public void progressReport(int progress);
     }
 }

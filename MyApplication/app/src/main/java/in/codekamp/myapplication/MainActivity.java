@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity implements Callback<ListResp
 
         MailchimpService mailchimpService = retrofit.create(MailchimpService.class);
 
-        Call<ListResponse> call = mailchimpService.fetchLists("dc00610cdef48bd9d76a5f83e4e90415-us11");
+        Call<ListResponse> call = mailchimpService.fetchLists("");
         call.enqueue(this);
 
-        Call<ContactResponse> call1 = mailchimpService.fetchContacts("dc00610cdef48bd9d76a5f83e4e90415-us11", "55ec6cd534");
+        Call<ContactResponse> call1 = mailchimpService.fetchContacts("", "55ec6cd534");
 
         call1.enqueue(new Callback<ContactResponse>() {
             @Override

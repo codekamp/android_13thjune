@@ -12,8 +12,11 @@ public class ListResponse {
     @Expose
     private List<ContactList> contactLists = new ArrayList<ContactList>();
 
-
     public List<ContactList> getContactLists() {
         return contactLists;
+    }
+
+    public void setContactLists(List<ContactList> contactLists) {
+        this.contactLists = contactLists;
     }
 }

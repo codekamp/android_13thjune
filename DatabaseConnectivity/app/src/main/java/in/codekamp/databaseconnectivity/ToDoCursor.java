@@ -4,6 +4,9 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.widget.CursorAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cerebro on 07/07/16.
  */
@@ -17,13 +20,29 @@ public class ToDoCursor extends CursorWrapper {
         super(cursor);
     }
 
-    public String getTitle() {
-        int index = this.getColumnIndex("title");
-        return this.getString(index);
+    public Todo getToDo() {
+        int titleIndex = this.getColumnIndex("title");
+        int completedIndex = this.getColumnIndex("completed");
+
+        return new Todo(this.getString(titleIndex), this.getInt(completedIndex));
     }
 
-    public int getCompleted() {
-        int index = this.getColumnIndex("completed");
-        return this.getInt(index);
+    public List<Todo> getAllToDos() {
+        int currentPosition = this.getPosition();
+        this.moveToFirst();
+
+        List<Todo> allTodos = new ArrayList<>();
+
+        while(true) {
+            allTodos.add(this.getToDo());
+
+            if(this.moveToNext()) {
+                break;
+            }
+        }
+
+        this.move(currentPosition);
+
+        return allTodos;
     }
 }

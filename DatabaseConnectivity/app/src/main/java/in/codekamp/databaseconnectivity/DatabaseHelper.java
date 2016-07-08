@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL( "CREATE TABLE todo ( title VARCHAR(255), completed int(1) );" );
+        db.execSQL( "CREATE TABLE todo ( _id int(11) AUTO_INCREMENT,title VARCHAR(255), completed int(1) DEFAULT 0);" );
     }
 
     @Override

@@ -28,11 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         ToDoCursor myCursor = new ToDoCursor(cursor);
 
-        while(myCursor.moveToNext()) {
-
-            Log.d("CodeKamp", "title: " + myCursor.getTitle());
-            Log.d("CodeKamp", "Completed: " + myCursor.getCompleted());
-        }
+        myCursor.getAllToDos();
 
     }
 

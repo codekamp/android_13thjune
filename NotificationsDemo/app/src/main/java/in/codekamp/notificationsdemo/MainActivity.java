@@ -38,25 +38,41 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
         builder.setContentIntent(pendingIntent);
-        builder.setContentTitle("my awesome notifcation");
+        builder.setContentTitle("Downloading Pokemon Go!");
         builder.setContentText(message);
         builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setOngoing(true);
         builder.setAutoCancel(true);
-        builder.addAction(R.drawable.ic_launcher,"view", pendingIntent);
-        builder.addAction(R.drawable.ic_launcher,"reply", pendingIntent);
+//        builder.addAction(R.drawable.ic_launcher,"next", pendingIntent);
+//        builder.addAction(R.drawable.ic_launcher,"previous", pendingIntent);
+//
+//        NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+//
+//        style.bigText("hlafhd hoahfoa hofahof aohf oahofahf oahodsf aofhao gfoagfaosdgf ogaofgasdo");
+//        builder.setStyle(style);
 
-        NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
 
-        style.bigText("hlafhd hoahfoa hofahof aohf oahofahf oahodsf aofhao gfoagfaosdgf ogaofgasdo");
-
-
-        builder.setStyle(style);
-
-        Notification notification = builder.build();
+        builder.setProgress(100,0,false);
 
         NotificationManager manager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        manager.notify(notificationId, notification);
+        manager.notify(notificationId, builder.build());
+
+        for (int i = 1; i <= 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            builder.setProgress(100,i*10,false);
+            manager.notify(notificationId, builder.build());
+        }
+
+        builder.setProgress(0,0,false);
+        builder.setOngoing(false);
+        builder.setContentTitle("Pokemon Go download completed");
+
+        manager.notify(notificationId, builder.build());
     }
 }

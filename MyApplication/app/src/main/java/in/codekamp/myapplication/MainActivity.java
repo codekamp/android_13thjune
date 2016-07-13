@@ -1,8 +1,13 @@
 package in.codekamp.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ListResp
                 .baseUrl("https://us11.api.mailchimp.com/2.0/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
 
         MailchimpService mailchimpService = retrofit.create(MailchimpService.class);
 

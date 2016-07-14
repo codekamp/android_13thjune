@@ -1,5 +1,6 @@
 package in.codekamp.recylerviewdemo;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -14,14 +15,15 @@ public class SongListViewHolder extends RecyclerView.ViewHolder implements View.
 
     private TextView titleTextView;
     private TextView albumTextView;
+    private SongListViewHolderClickListner listner;
 
-    public SongListViewHolder(View itemView) {
+    public SongListViewHolder(View itemView, SongListViewHolderClickListner listner) {
         super(itemView);
 
+        this.listner = listner;
         titleTextView = (TextView) itemView.findViewById(R.id.song_title_textview);
         albumTextView = (TextView) itemView.findViewById(R.id.song_album_textview);
-
-        itemView.setOnClickListener(this);
+        this.itemView.setOnClickListener(this);
     }
 
     public void bindSong(Song song) {
@@ -32,6 +34,16 @@ public class SongListViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-        Log.d("CodeKamp","Row clicked for song " + this.currentSong.getTitle());
+        if(this.listner.isSongSelected(currentSong)) {
+            this.itemView.setBackgroundColor(Color.parseColor("#00FF00"));
+        }else {
+            this.itemView.setBackgroundColor(Color.parseColor("#FF0000"));
+        }
+        this.listner.songClicked(this.currentSong);
+    }
+
+    public interface SongListViewHolderClickListner {
+        public void songClicked(Song song);
+        public boolean isSongSelected(Song song);
     }
 }
